@@ -1,0 +1,46 @@
+# Maintainer: Florian Maunier <fmaunier@gmail.com>
+# Source: https://github.com/fmauNeko/archlinux-packages
+pkgname=skmclauncher-git
+_pkgname=skmclauncher
+pkgver=20130617
+pkgrel=1
+pkgdesc="sk89q's Minecraft launcher - Easily install mods, update MC, open source"
+arch=(any)
+url="git://github.com/sk89q/skmclauncher"
+license=('LGPL3')
+depends=('java-runtime' 'xorg-server-utils' 'openal')
+makedepends=(git maven)
+provides=(${_pkgname})
+conflicts=(${_pkgname})
+
+source=(skmc skmc.desktop icon.png)
+md5sums=('3899951f27410ca13184fd1298971036'
+         '0e8958712cd43875c003b5158e99a5bb'
+         '585022e0efc7e2bc5b7f22f6c8192660')
+
+_gitroot=git://github.com/sk89q/${_pkgname}.git
+_gitname=${_pkgname}
+
+build() {
+  msg2 "Connecting to GIT server...."
+  if [ -d "${srcdir}/${_gitname}" ] ; then
+    ( cd "${srcdir}/${_gitname}" && git pull origin )
+    msg2 "The local files are updated."
+  else
+    git clone $_gitroot "${srcdir}/${_gitname}"
+  fi
+
+  cd "${srcdir}/${_gitname}"
+  mvn --batch-mode --update-snapshots clean install || return 1
+}
+
+package() {
+  install -D -m755 "${srcdir}/skmc"         "${pkgdir}/usr/bin/skmc"
+  install -D -m644 "${srcdir}/${_gitname}/target/SKMCLauncher.jar"     "${pkgdir}/usr/share/minecraft/skmc.jar"
+
+  # Desktop launcher with icon
+  install -D -m644 "${srcdir}/skmc.desktop" "${pkgdir}/usr/share/applications/skmc.desktop"
+  install -D -m644 "${srcdir}/icon.png"     "${pkgdir}/usr/share/pixmaps/skmc.png"
+}
+
+# vim:set ts=2 sw=2 et:

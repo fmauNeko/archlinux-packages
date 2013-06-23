@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=MultiMC 4
+GenericName=multimc4
+Comment=A Minecraft tool that allows you to manage multiple installations.
+Exec=multimc
+Icon=/usr/share/pixmaps/multimc4.png
+Terminal=false
+Type=Application
+Categories=Game;

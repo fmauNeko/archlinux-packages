@@ -8,8 +8,10 @@ url="http://forkk.net/MultiMC4/"
 license=('Apache')
 depends=('curl' 'wxgtk2.9' 'jre7-openjdk')
 makedepends=('git' 'cmake' 'boost' 'boost-libs' 'jdk7-openjdk')
-source=('multimc.sh')
-sha512sums=('397f370bc52e6afefe83789827aa560495c300591cc388a4919eb00121e943706e89d45ab54cc09833dc2893c8786a0d16619c7ccfb26fef30fcba13e6e8ada3')
+source=('multimc.sh' 'multimc4.desktop' 'icon.png')
+sha512sums=('397f370bc52e6afefe83789827aa560495c300591cc388a4919eb00121e943706e89d45ab54cc09833dc2893c8786a0d16619c7ccfb26fef30fcba13e6e8ada3'
+            '7ba788649afbe67a16bc34978dee5d711003a70183ef0a7ae6985666dc23af22e2e6eb066f9b7a6d52e2103a699bcc06637305f39422e96818346dcaf1b32f80'
+            '31c0e4e1469a371c30cf7a5a41a52b882bbe05f10e1c40894828f758524ebf4d5defc3097bd8072de86169ad3f9a130ab9d10b5e4e1731da475a339fd6275b94')
 
 _gitroot=git://github.com/Forkk/MultiMC4.git
 _gitname=MultiMC4
